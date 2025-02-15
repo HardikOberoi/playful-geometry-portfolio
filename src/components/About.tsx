@@ -8,18 +8,33 @@ export const About = () => {
               Skills & Experience
             </h2>
             <p className="text-gray-700">
-              Full Stack Developer with expertise in modern web technologies
+              Combining expertise in Full Stack Development and Data Analysis
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100">
-                <h3 className="text-xl font-display font-bold mb-4 text-gray-800">Technologies & Tools</h3>
-                <div className="flex flex-wrap gap-3">
-                  {["C/C++", "Java", "Python", "JavaScript", "React.JS", "Node.JS", "AWS", "Spring", "Angular", "SQL", "HTML/CSS"].map((skill) => (
-                    <Skill key={skill}>{skill}</Skill>
-                  ))}
+                <h3 className="text-xl font-display font-bold mb-4 text-gray-800">
+                  Technical Expertise
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-semibold text-primary mb-2">Development</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["React.JS", "Node.JS", "Java", "Python", "AWS", "MongoDB"].map((skill) => (
+                        <Skill key={skill}>{skill}</Skill>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-primary mb-2">Data & Analytics</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {["Machine Learning", "Data Analysis", "Python", "SQL", "Visualization"].map((skill) => (
+                        <Skill key={skill}>{skill}</Skill>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -29,6 +44,7 @@ export const About = () => {
                   <h4 className="font-bold text-gray-800">VIT BHOPAL UNIVERSITY</h4>
                   <p className="text-gray-700">B.TECH. in Computer Science and Engineering</p>
                   <p className="text-sm text-gray-600">September 2022 - Present</p>
+                  <p className="mt-2 text-sm text-gray-700">Specialization in Data Science and Machine Learning</p>
                 </div>
               </div>
               
@@ -36,13 +52,16 @@ export const About = () => {
                 <h3 className="text-xl font-display font-bold mb-4 text-gray-800">Certifications</h3>
                 <div className="space-y-4">
                   {[
-                    { name: "Applied Machine Learning in Python", date: "December 2023" },
-                    { name: "Fundamentals of AI and ML", date: "May 2023" },
-                    { name: "Python Essential", date: "February 2023" }
+                    { name: "Applied Machine Learning in Python", date: "December 2023", org: "Coursera" },
+                    { name: "Fundamentals of AI and ML", date: "May 2023", org: "IBM" },
+                    { name: "Python Essential", date: "February 2023", org: "Cisco" }
                   ].map((cert, index) => (
-                    <div key={index}>
-                      <h4 className="font-bold text-gray-800">{cert.name}</h4>
-                      <p className="text-sm text-gray-600">{cert.date}</p>
+                    <div key={index} className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-bold text-gray-800">{cert.name}</h4>
+                        <p className="text-sm text-gray-600">{cert.org}</p>
+                      </div>
+                      <span className="text-sm text-gray-600">{cert.date}</span>
                     </div>
                   ))}
                 </div>
@@ -50,16 +69,17 @@ export const About = () => {
             </div>
             
             <div className="space-y-6">
-              <h3 className="text-xl font-display font-bold mb-4 text-gray-800">Work Experience</h3>
+              <h3 className="text-xl font-display font-bold mb-4 text-gray-800">Professional Experience</h3>
               <div className="space-y-6">
                 <ExperienceCard
-                  title="FULL STACK DEVELOPER"
+                  title="FULL STACK DEVELOPER & DATA SPECIALIST"
                   company="NovaNectar"
                   period="July 2024 - August 2024"
                   achievements={[
-                    "Streamlined development process with automated testing tools, reducing regression testing time by 60%",
-                    "Engineered full-stack solutions improving user experience with 40% increase in engagement",
-                    "Analyzed system performance metrics leading to 66% reduction in request handling time"
+                    "Developed and implemented data-driven features resulting in a 40% increase in user engagement",
+                    "Engineered automated data processing pipelines reducing manual work by 60%",
+                    "Created interactive dashboards for real-time performance monitoring",
+                    "Optimized database queries leading to 66% faster response times"
                   ]}
                 />
                 
@@ -69,6 +89,7 @@ export const About = () => {
                   period="March 2024 - April 2024"
                   achievements={[
                     "Developed a server scripting framework automating entry of 200,000+ records",
+                    "Implemented data validation and cleaning procedures improving data accuracy by 95%",
                     "Architected multi-layered application with Java, Python, and AWS Step Functions"
                   ]}
                 />

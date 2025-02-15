@@ -85,10 +85,10 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="relative h-screen bg-gradient-to-br from-[#f8f9ff] via-[#e9eeff] to-[#f0e7ff]">
       <div
         ref={containerRef}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 opacity-60"
       />
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center px-6">

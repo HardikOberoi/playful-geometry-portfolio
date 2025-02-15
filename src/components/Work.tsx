@@ -1,4 +1,3 @@
-
 const projects = [
   {
     title: "FABRECYCLE",
@@ -16,7 +15,7 @@ const projects = [
 
 export const Work = () => {
   return (
-    <section id="work" className="py-20 bg-gradient-to-b from-white to-purple-50">
+    <section id="work" className="py-20 bg-gradient-to-b from-[#f0e7ff] via-white to-[#f8f9ff]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">

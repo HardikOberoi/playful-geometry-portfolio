@@ -1,25 +1,17 @@
 
 const projects = [
   {
-    title: "Project One",
-    category: "3D Animation",
+    title: "FABRECYCLE",
+    category: "Next.js, MongoDB, React.JS, Node.JS",
+    description: "Established a responsive web application employing Java, CSS, HTML, and JavaScript, facilitating a user-friendly interface that attracted over 2,000 new users within the first month and boosted session duration by 40%.",
     image: "/placeholder.svg",
   },
   {
-    title: "Project Two",
-    category: "Motion Design",
+    title: "CLOUD BASED RECIPE SHARING WEBSITE",
+    category: "Java, React.JS, Node.JS, Next.js",
+    description: "Created a comprehensive backend system utilizing Java to automate data processing tasks, leading to a reduction in manual intervention by 75 hours per month and increasing data accuracy and reliability.",
     image: "/placeholder.svg",
-  },
-  {
-    title: "Project Three",
-    category: "Interactive",
-    image: "/placeholder.svg",
-  },
-  {
-    title: "Project Four",
-    category: "3D Modeling",
-    image: "/placeholder.svg",
-  },
+  }
 ];
 
 export const Work = () => {
@@ -28,14 +20,14 @@ export const Work = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-            Featured Work
+            Projects
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            A collection of my latest projects in 3D animation and interactive design
+            A showcase of my technical projects and developments
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -52,8 +44,9 @@ export const Work = () => {
                     <h3 className="text-white text-xl font-display font-bold mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-white/80">{project.category}</p>
-                    <button className="mt-4 px-6 py-2 bg-white text-gray-900 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors duration-300">
+                    <p className="text-white/80 mb-4">{project.category}</p>
+                    <p className="text-white/90 text-sm mb-4">{project.description}</p>
+                    <button className="px-6 py-2 bg-white text-gray-900 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors duration-300">
                       View Project
                     </button>
                   </div>

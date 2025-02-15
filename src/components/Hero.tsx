@@ -93,13 +93,26 @@ export const Hero = () => {
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center px-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 animate-fade-in">
-            Creative
-            <span className="text-primary"> 3D </span>
-            Designer
+            Hardik
+            <span className="text-primary"> Oberoi </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in">
-            Bringing imagination to life through stunning 3D animations and interactive experiences
+            Full Stack Developer specializing in React.js, Node.js, and AWS
           </p>
+          <div className="flex justify-center gap-4 mb-8">
+            <a
+              href="mailto:hardikoberoi04@gmail.com"
+              className="text-gray-600 hover:text-primary transition-colors"
+            >
+              hardikoberoi04@gmail.com
+            </a>
+            <a
+              href="tel:+917417399930"
+              className="text-gray-600 hover:text-primary transition-colors"
+            >
+              +91 7417399930
+            </a>
+          </div>
           <a
             href="#work"
             className="inline-block bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors duration-300 animate-fade-in"

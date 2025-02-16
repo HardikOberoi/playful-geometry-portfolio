@@ -20,9 +20,6 @@ export const Hero = () => {
             <p className="text-lg md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto animate-fade-in font-display">
               Full Stack Developer & Data Specialist
             </p>
-            <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto animate-fade-in">
-              Crafting robust web applications and deriving insights from data to drive business success
-            </p>
           </div>
           <div className="flex flex-col md:flex-row justify-center gap-4 mb-8 animate-fade-in">
             <div className="flex items-center justify-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
@@ -40,18 +37,6 @@ export const Hero = () => {
               <a href="tel:+917417399930" className="text-white/80 hover:text-white transition-colors">
                 +91 7417399930
               </a>
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 mb-8 animate-fade-in">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
-              <span className="text-sm font-medium text-white/80">Tech Stack:</span>
-              <div className="flex gap-2">
-                {["React", "Node.js", "Python", "AWS", "MongoDB"].map((tech) => (
-                  <span key={tech} className="px-2 py-1 text-xs font-medium text-primary/80 bg-primary/5 rounded-full border border-primary/20 hover:bg-primary/10 transition-colors">
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
           <div className="flex justify-center gap-4 animate-fade-in">

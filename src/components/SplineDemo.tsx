@@ -2,7 +2,6 @@
 'use client';
 
 import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
  
 export function SplineSceneBasic() {
@@ -14,7 +13,7 @@ export function SplineSceneBasic() {
       />
       
       <div className="h-full">
-        <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-50">
+        <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-30">
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"

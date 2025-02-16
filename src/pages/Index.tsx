@@ -8,7 +8,7 @@ import { SplineSceneBasic } from "@/components/SplineDemo";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-black">
       <Navbar />
       <div className="relative">
         <Hero />

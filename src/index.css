@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +98,60 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .hover-white-glow {
+    @apply transition-all duration-300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hover-white-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+    border-radius: inherit;
+  }
+
+  .hover-white-glow:hover::after {
+    opacity: 1;
+  }
+
+  .animated-border {
+    @apply border border-white/10 hover:border-white/30 transition-colors duration-300;
+    background: linear-gradient(to right, transparent, transparent),
+                linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    background-size: 100% 100%, 0 100%;
+    background-position: 0 0, 0 0;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s;
+  }
+
+  .animated-border:hover {
+    background-size: 0 100%, 100% 100%;
+  }
+
+  .section-highlight {
+    @apply relative overflow-hidden;
+  }
+
+  .section-highlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.03) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .section-highlight:hover::before {
+    opacity: 1;
   }
 }

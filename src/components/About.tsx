@@ -1,21 +1,20 @@
-
 export const About = () => {
   return (
-    <section id="about" className="py-20 bg-black">
+    <section id="about" className="py-20 bg-black section-highlight">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#9b87f5] via-[#b19dff] to-[#ffffff] bg-clip-text text-transparent hover-white-glow">
               Skills & Experience
             </h2>
-            <p className="text-white/70">
+            <p className="text-white/70 hover-white-glow">
               Combining expertise in Full Stack Development and Data Analysis
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
-              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">
                 <h3 className="text-xl font-display font-bold mb-4 text-white">
                   Technical Expertise
                 </h3>
@@ -39,7 +38,7 @@ export const About = () => {
                 </div>
               </div>
               
-              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">
                 <h3 className="text-xl font-display font-bold mb-4 text-white">Education</h3>
                 <div>
                   <h4 className="font-bold text-white">VIT BHOPAL UNIVERSITY</h4>
@@ -49,7 +48,7 @@ export const About = () => {
                 </div>
               </div>
               
-              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">
                 <h3 className="text-xl font-display font-bold mb-4 text-white">Certifications</h3>
                 <div className="space-y-4">
                   {[
@@ -104,7 +103,7 @@ export const About = () => {
 };
 
 const Skill = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-block px-3 py-1 bg-white/5 text-white/80 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors duration-300">
+  <span className="inline-block px-3 py-1 bg-white/5 text-white/80 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 transition-colors duration-300 hover-white-glow animated-border">
     {children}
   </span>
 );
@@ -120,7 +119,7 @@ const ExperienceCard = ({
   period: string;
   achievements: string[];
 }) => (
-  <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+  <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">
     <h4 className="font-bold text-lg text-white">{title}</h4>
     <p className="text-primary font-medium">{company}</p>
     <p className="text-sm text-white/60 mb-4">{period}</p>

@@ -1,10 +1,10 @@
 export const About = () => {
   return (
-    <section id="about" className="py-20 bg-black section-highlight">
+    <section id="about" className="py-20 section-about section-highlight">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#9b87f5] via-[#b19dff] to-[#ffffff] bg-clip-text text-transparent hover-white-glow">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent hover-white-glow">
               Skills & Experience
             </h2>
             <p className="text-white/70 hover-white-glow">

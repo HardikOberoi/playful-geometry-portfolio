@@ -6,13 +6,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
 
 const App = () => {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Update cursor highlight position
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+
+      // Update section highlights
       const elements = document.querySelectorAll('.hover-white-glow, .section-highlight');
       elements.forEach((element) => {
         const rect = (element as HTMLElement).getBoundingClientRect();
@@ -31,6 +37,13 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <TooltipProvider>
+          <div 
+            className="cursor-highlight"
+            style={{
+              left: `${cursorPosition.x}px`,
+              top: `${cursorPosition.y}px`,
+            }}
+          />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />

@@ -16,10 +16,10 @@ const projects = [
 
 export const Work = () => {
   return (
-    <section id="work" className="py-20 bg-black section-highlight">
+    <section id="work" className="py-20 section-work section-highlight">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#9b87f5] via-[#b19dff] to-[#ffffff] bg-clip-text text-transparent hover-white-glow">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent hover-white-glow">
             Projects
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto hover-white-glow">

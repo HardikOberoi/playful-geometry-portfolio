@@ -3,7 +3,7 @@ import * as THREE from "three";
 
 export const Hero = () => {
   return (
-    <div className="relative h-screen bg-black section-highlight">
+    <div className="relative h-screen section-portfolio section-highlight">
       <div className="relative z-10 h-full flex items-center justify-center">
         <div className="text-center px-6">
           <div className="mb-4 animate-fade-in">

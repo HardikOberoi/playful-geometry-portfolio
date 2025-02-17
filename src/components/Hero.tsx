@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -17,7 +18,7 @@ export const Hero = () => {
           </h1>
           <div className="relative mb-8">
             <p className="text-lg md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto animate-fade-in font-display hover-white-glow">
-              Full Stack Developer & Data Specialist
+              Full Stack Developer & Data Scientist
             </p>
           </div>
           <div className="flex flex-col md:flex-row justify-center gap-4 mb-8 animate-fade-in">
@@ -25,8 +26,8 @@ export const Hero = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary/80" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <a href="mailto:hardikoberoi04@gmail.com" className="text-white/80 hover:text-white transition-colors">
-                hardikoberoi04@gmail.com
+              <a href="mailto:haardikoberoi04@gmail.com" className="text-white/80 hover:text-white transition-colors">
+                haardikoberoi04@gmail.com
               </a>
             </div>
             <div className="flex items-center justify-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">

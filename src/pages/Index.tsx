@@ -19,7 +19,7 @@ const Index = () => {
         
         // Apply rotation transform for head/eye movement instead of translation
         // This creates a "looking" effect rather than moving the entire robot
-        scene.style.transform = `rotateY(${x * 15}deg) rotateX(${-y * 15}deg)`;
+        scene.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
       }
     };
 
@@ -32,7 +32,7 @@ const Index = () => {
       <Navbar />
       <div className="relative">
         <Hero />
-        <div className="absolute inset-0 pointer-events-none spline-scene transition-transform duration-300 ease-out origin-center">
+        <div className="absolute inset-0 pointer-events-none spline-scene" style={{ transformOrigin: '75% 50%', transition: 'transform 0.3s ease-out' }}>
           <SplineSceneBasic />
         </div>
       </div>

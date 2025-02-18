@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Work } from "@/components/Work";
 import { About } from "@/components/About";
+import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { SplineSceneBasic } from "@/components/SplineDemo";
 import { useEffect, useRef, useState } from "react";
@@ -91,6 +92,7 @@ const Index = () => {
       </div>
       <Work />
       <About />
+      <Skills />
       <Contact />
       
       {/* Animated cursor agent */}

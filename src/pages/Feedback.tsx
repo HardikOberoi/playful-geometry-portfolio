@@ -18,7 +18,7 @@ const mockResponses = [
   }
 ];
 
-const Responses = () => {
+const Feedback = () => {
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
@@ -26,7 +26,7 @@ const Responses = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#F472B6] via-[#EC4899] to-[#DB2777] bg-clip-text text-transparent hover-white-glow">
-              Contact Responses
+              Feedback
             </h1>
             
             <div className="space-y-6">
@@ -53,4 +53,4 @@ const Responses = () => {
   );
 };
 
-export default Responses;
+export default Feedback;

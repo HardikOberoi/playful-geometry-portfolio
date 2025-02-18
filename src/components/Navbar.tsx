@@ -1,6 +1,34 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+
+const NavLink = ({ href, children, color }: { href: string; children: React.ReactNode; color: string }) => (
+  <a
+    href={href}
+    className={`font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow`}
+  >
+    {children}
+  </a>
+);
+
+const MobileNavLink = ({
+  href,
+  onClick,
+  children,
+  color
+}: {
+  href: string;
+  onClick: () => void;
+  children: React.ReactNode;
+  color: string;
+}) => (
+  <a
+    href={href}
+    onClick={onClick}
+    className={`block font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow`}
+  >
+    {children}
+  </a>
+);
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +63,7 @@ export const Navbar = () => {
             <NavLink href="#work" color="from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C]">Work</NavLink>
             <NavLink href="#about" color="from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84]">About</NavLink>
             <NavLink href="#contact" color="from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED]">Contact</NavLink>
-            <NavLink href="/responses" color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">Responses</NavLink>
+            <NavLink href="/feedback" color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">Feedback</NavLink>
           </div>
 
           <button
@@ -60,8 +88,8 @@ export const Navbar = () => {
             <MobileNavLink href="#contact" onClick={() => setIsMenuOpen(false)} color="from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED]">
               Contact
             </MobileNavLink>
-            <MobileNavLink href="/responses" onClick={() => setIsMenuOpen(false)} color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">
-              Responses
+            <MobileNavLink href="/feedback" onClick={() => setIsMenuOpen(false)} color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">
+              Feedback
             </MobileNavLink>
           </div>
         </div>
@@ -69,32 +97,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-const NavLink = ({ href, children, color }: { href: string; children: React.ReactNode; color: string }) => (
-  <a
-    href={href}
-    className={`font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow`}
-  >
-    {children}
-  </a>
-);
-
-const MobileNavLink = ({
-  href,
-  onClick,
-  children,
-  color
-}: {
-  href: string;
-  onClick: () => void;
-  children: React.ReactNode;
-  color: string;
-}) => (
-  <a
-    href={href}
-    onClick={onClick}
-    className={`block font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow`}
-  >
-    {children}
-  </a>
-);

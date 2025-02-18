@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 const Index = () => {
   const sceneRef = useRef<HTMLDivElement>(null);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [keyRotation, setKeyRotation] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -19,7 +20,7 @@ const Index = () => {
       
       // Calculate the center of the robot's head
       const centerX = rect.left + (rect.width * 0.75);
-      const centerY = rect.top + (rect.height * 0.4); // Adjusted to match head position
+      const centerY = rect.top + (rect.height * 0.4);
       
       // Calculate angle between cursor and center point
       const deltaX = e.clientX - centerX;
@@ -30,20 +31,46 @@ const Index = () => {
       const maxDistance = Math.min(rect.width, rect.height) / 2;
       const scale = Math.min(distance / maxDistance, 1);
       
-      // Convert to degrees with increased sensitivity and smoother movement
-      const angleX = (deltaX / rect.width) * 25 * scale;
-      const angleY = (deltaY / rect.height) * 25 * scale;
+      // Convert to degrees with increased sensitivity
+      const angleX = (deltaX / rect.width) * 30 * scale;
+      const angleY = (deltaY / rect.height) * 30 * scale;
       
       // Update robot head/eye rotation
-      sceneRef.current.style.transform = `rotateY(${angleX}deg) rotateX(${-angleY}deg)`;
+      if (sceneRef.current) {
+        sceneRef.current.style.transform = `rotateY(${angleX + keyRotation.x}deg) rotateX(${-angleY + keyRotation.y}deg)`;
+      }
       
       // Update cursor position for the agent
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const rotationAmount = 15; // degrees per keypress
+      
+      switch(e.key) {
+        case 'ArrowLeft':
+          setKeyRotation(prev => ({ ...prev, x: prev.x - rotationAmount }));
+          break;
+        case 'ArrowRight':
+          setKeyRotation(prev => ({ ...prev, x: prev.x + rotationAmount }));
+          break;
+        case 'ArrowUp':
+          setKeyRotation(prev => ({ ...prev, y: prev.y - rotationAmount }));
+          break;
+        case 'ArrowDown':
+          setKeyRotation(prev => ({ ...prev, y: prev.y + rotationAmount }));
+          break;
+      }
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [keyRotation]);
 
   return (
     <div className="min-h-screen bg-black">
@@ -54,8 +81,8 @@ const Index = () => {
           ref={sceneRef}
           className="absolute inset-0 pointer-events-none spline-scene" 
           style={{ 
-            transformOrigin: '75% 40%', // Adjusted to match head position
-            transition: 'transform 0.1s ease-out',
+            transformOrigin: '75% 40%',
+            transition: 'transform 0.15s ease-out',
             willChange: 'transform'
           }}
         >

@@ -1,4 +1,3 @@
-
 @layer utilities {
   .hover-white-glow {
     @apply transition-all duration-300;
@@ -64,7 +63,52 @@
     backdrop-filter: blur(4px);
   }
 
-  /* Form elements animations */
+  .text-gradient-cool {
+    @apply bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-[#F59E0B] via-[#EF4444] to-[#EC4899] bg-clip-text text-transparent;
+  }
+
+  .floating-animation {
+    animation: float-soft 3s ease-in-out infinite;
+  }
+
+  .pulse-animation {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/5 border border-white/10;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .nav-blur {
+    @apply backdrop-blur-md bg-black/50 border-b border-white/10;
+  }
+
+  .skill-tag {
+    @apply px-3 py-1 rounded-full text-sm font-medium 
+           bg-white/10 backdrop-blur-sm text-white/90 
+           border border-white/10 transition-all duration-300
+           hover:bg-white/20 hover:border-white/20 floating-animation;
+  }
+
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:scale-[1.02] 
+           hover:shadow-lg hover:shadow-white/5;
+  }
+
   button, a, input, textarea {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }

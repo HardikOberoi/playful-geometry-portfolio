@@ -23,10 +23,13 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // @ts-ignore - Ignoring type error since we know the table exists
       const { error } = await supabase
         .from('contact_messages')
-        .insert([formData]);
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }]);
 
       if (error) throw error;
 

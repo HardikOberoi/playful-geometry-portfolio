@@ -19,59 +19,31 @@ const Index = () => {
 
       const rect = sceneRef.current.getBoundingClientRect();
       
-      // Calculate the center of the robot's head
+      // Calculate the center of the robot's head with fixed position
       const centerX = rect.left + (rect.width * 0.75);
       const centerY = rect.top + (rect.height * 0.4);
       
-      // Calculate angle between cursor and center point
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
+      // Calculate angle between cursor and center point with reduced sensitivity
+      const deltaX = (e.clientX - centerX) * 0.1; // Reduced sensitivity
+      const deltaY = (e.clientY - centerY) * 0.1;
       
-      // Calculate distance for more natural movement
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-      const maxDistance = Math.min(rect.width, rect.height) / 2;
-      const scale = Math.min(distance / maxDistance, 1);
+      // Smooth out the movement with constraints
+      const maxAngle = 15;
+      const angleX = Math.max(-maxAngle, Math.min(maxAngle, deltaX));
+      const angleY = Math.max(-maxAngle, Math.min(maxAngle, deltaY));
       
-      // Convert to degrees with increased sensitivity
-      const angleX = (deltaX / rect.width) * 30 * scale;
-      const angleY = (deltaY / rect.height) * 30 * scale;
-      
-      // Update robot head/eye rotation
+      // Update robot head rotation with smoother transition
       if (sceneRef.current) {
-        sceneRef.current.style.transform = `rotateY(${angleX + keyRotation.x}deg) rotateX(${-angleY + keyRotation.y}deg)`;
+        sceneRef.current.style.transform = `rotateY(${angleX}deg) rotateX(${-angleY}deg)`;
       }
       
-      // Update cursor position for the agent
+      // Update cursor position for the agent with smoother animation
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const rotationAmount = 15; // degrees per keypress
-      
-      switch(e.key) {
-        case 'ArrowLeft':
-          setKeyRotation(prev => ({ ...prev, x: prev.x - rotationAmount }));
-          break;
-        case 'ArrowRight':
-          setKeyRotation(prev => ({ ...prev, x: prev.x + rotationAmount }));
-          break;
-        case 'ArrowUp':
-          setKeyRotation(prev => ({ ...prev, y: prev.y - rotationAmount }));
-          break;
-        case 'ArrowDown':
-          setKeyRotation(prev => ({ ...prev, y: prev.y + rotationAmount }));
-          break;
-      }
-    };
-
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('keydown', handleKeyDown);
-    
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [keyRotation]);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black">
@@ -83,7 +55,7 @@ const Index = () => {
           className="absolute inset-0 pointer-events-none spline-scene" 
           style={{ 
             transformOrigin: '75% 40%',
-            transition: 'transform 0.15s ease-out',
+            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             willChange: 'transform'
           }}
         >
@@ -95,7 +67,7 @@ const Index = () => {
       <Skills />
       <Contact />
       
-      {/* Animated cursor agent */}
+      {/* Animated cursor agent with smoother movement */}
       <div 
         className="cursor-agent"
         style={{

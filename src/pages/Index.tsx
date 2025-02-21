@@ -40,20 +40,28 @@ const Index = () => {
         const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
         
         if (scrollProgress > 0 && scrollProgress < 1) {
-          // Apply rolling/slide effect based on scroll position
-          const translateY = Math.max(0, Math.min(20, 20 * (1 - scrollProgress)));
-          const scale = 0.98 + (0.02 * Math.min(1, Math.max(0, scrollProgress)));
-          const opacity = 0.5 + (0.5 * Math.min(1, Math.max(0, scrollProgress)));
+          // Enhanced rolling effect with curved motion
+          const translateY = Math.max(0, Math.min(30, 30 * Math.sin(Math.PI * (1 - scrollProgress))));
+          const rotateX = Math.max(0, Math.min(5, 5 * Math.sin(Math.PI * (1 - scrollProgress))));
+          const scale = 0.97 + (0.03 * Math.sin(Math.PI * scrollProgress));
+          const opacity = 0.3 + (0.7 * Math.sin(Math.PI * scrollProgress));
           
-          section.style.transform = `translateY(${translateY}px) scale(${scale})`;
+          section.style.transform = `translateY(${translateY}px) rotateX(${rotateX}deg) scale(${scale})`;
           section.style.opacity = opacity.toString();
-          section.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          section.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+          section.style.transformOrigin = 'center top';
+          section.style.perspective = '1000px';
+          section.style.backfaceVisibility = 'hidden';
         }
       });
     };
 
-    // Initialize smooth scroll behavior
+    // Initialize smooth scroll behavior with enhanced easing
     document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Apply perspective to the container
+    document.body.style.perspective = '1000px';
+    document.body.style.transformStyle = 'preserve-3d';
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('scroll', handleScroll);

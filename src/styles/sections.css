@@ -1,23 +1,39 @@
 
 @layer utilities {
   .section-portfolio {
-    background: linear-gradient(to bottom, #000000, #1a1a1a);
-    animation: fadeInUp 1s ease-out;
+    background: linear-gradient(135deg, #000000, #1a1a1a, #0c1219);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite, fadeInUp 1s ease-out;
   }
 
   .section-work {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0c1219 100%);
-    animation: fadeInUp 1s ease-out 0.2s backwards;
+    background: linear-gradient(225deg, #1a1a1a 0%, #0c1219 60%, #161032 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite, fadeInUp 1s ease-out 0.2s backwards;
   }
 
   .section-about {
-    background: linear-gradient(225deg, #0c1219 0%, #131313 100%);
-    animation: fadeInUp 1s ease-out 0.4s backwards;
+    background: linear-gradient(315deg, #0c1219 0%, #131313 50%, #1a0f2e 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite, fadeInUp 1s ease-out 0.4s backwards;
   }
 
   .section-contact {
-    background: linear-gradient(315deg, #131313 0%, #000000 100%);
-    animation: fadeInUp 1s ease-out 0.6s backwards;
+    background: linear-gradient(45deg, #131313 0%, #000000 50%, #0f1629 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite, fadeInUp 1s ease-out 0.6s backwards;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .section-highlight {
@@ -29,7 +45,10 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.05) 25%,
+                transparent 70%);
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;

@@ -18,39 +18,42 @@ const Index = () => {
       if (!sceneRef.current) return;
 
       const rect = sceneRef.current.getBoundingClientRect();
-      
-      // Calculate the center of the robot's head with fixed position
       const centerX = rect.left + (rect.width * 0.75);
       const centerY = rect.top + (rect.height * 0.4);
-      
-      // Calculate angle between cursor and center point with reduced sensitivity
       const deltaX = (e.clientX - centerX) * 0.1;
       const deltaY = (e.clientY - centerY) * 0.1;
-      
-      // Smooth out the movement with constraints
       const maxAngle = 15;
       const angleX = Math.max(-maxAngle, Math.min(maxAngle, deltaX));
       const angleY = Math.max(-maxAngle, Math.min(maxAngle, deltaY));
       
-      // Update robot head rotation with smoother transition
       if (sceneRef.current) {
         sceneRef.current.style.transform = `rotateY(${angleX}deg) rotateX(${-angleY}deg)`;
       }
       
-      // Update cursor position for the agent with smoother animation
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
-    // Add scroll event listener for smooth section transitions
     const handleScroll = () => {
       const sections = document.querySelectorAll('section');
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom > 0;
-        section.style.opacity = isVisible ? '1' : '0.5';
-        section.style.transform = isVisible ? 'scale(1)' : 'scale(0.98)';
+        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        
+        if (scrollProgress > 0 && scrollProgress < 1) {
+          // Apply rolling/slide effect based on scroll position
+          const translateY = Math.max(0, Math.min(20, 20 * (1 - scrollProgress)));
+          const scale = 0.98 + (0.02 * Math.min(1, Math.max(0, scrollProgress)));
+          const opacity = 0.5 + (0.5 * Math.min(1, Math.max(0, scrollProgress)));
+          
+          section.style.transform = `translateY(${translateY}px) scale(${scale})`;
+          section.style.opacity = opacity.toString();
+          section.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
       });
     };
+
+    // Initialize smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('scroll', handleScroll);
@@ -76,7 +79,7 @@ const Index = () => {
             transformOrigin: '75% 40%',
             transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             willChange: 'transform',
-            animation: 'fadeIn 0.5s ease-out' // Make robot appear earlier
+            animation: 'fadeIn 0.5s ease-out'
           }}
         >
           <SplineSceneBasic />

@@ -24,7 +24,7 @@ const Index = () => {
       const centerY = rect.top + (rect.height * 0.4);
       
       // Calculate angle between cursor and center point with reduced sensitivity
-      const deltaX = (e.clientX - centerX) * 0.1; // Reduced sensitivity
+      const deltaX = (e.clientX - centerX) * 0.1;
       const deltaY = (e.clientY - centerY) * 0.1;
       
       // Smooth out the movement with constraints
@@ -41,8 +41,27 @@ const Index = () => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
+    // Add scroll event listener for smooth section transitions
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.75 && rect.bottom > 0;
+        section.style.opacity = isVisible ? '1' : '0.5';
+        section.style.transform = isVisible ? 'scale(1)' : 'scale(0.98)';
+      });
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
+    document.addEventListener('scroll', handleScroll);
+    
+    // Trigger initial scroll event
+    handleScroll();
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -56,7 +75,8 @@ const Index = () => {
           style={{ 
             transformOrigin: '75% 40%',
             transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            willChange: 'transform'
+            willChange: 'transform',
+            animation: 'fadeIn 0.5s ease-out' // Make robot appear earlier
           }}
         >
           <SplineSceneBasic />
@@ -67,7 +87,6 @@ const Index = () => {
       <Skills />
       <Contact />
       
-      {/* Animated cursor agent with smoother movement */}
       <div 
         className="cursor-agent"
         style={{

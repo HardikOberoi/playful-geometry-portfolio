@@ -7,6 +7,7 @@ import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { SplineSceneBasic } from "@/components/SplineDemo";
 import { useEffect, useRef, useState } from "react";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 const Index = () => {
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -79,19 +80,32 @@ const Index = () => {
     <div className="min-h-screen bg-black">
       <Navbar />
       <div className="relative">
-        <Hero />
-        <div 
-          ref={sceneRef}
-          className="absolute inset-0 pointer-events-none spline-scene" 
-          style={{ 
-            transformOrigin: '75% 40%',
-            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            willChange: 'transform',
-            animation: 'fadeIn 0.5s ease-out'
-          }}
+        <ContainerScroll
+          titleComponent={
+            <h1 className="text-4xl font-semibold text-white">
+              Welcome to my <br />
+              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+                Portfolio
+              </span>
+            </h1>
+          }
         >
-          <SplineSceneBasic />
-        </div>
+          <div className="relative w-full h-full">
+            <Hero />
+            <div 
+              ref={sceneRef}
+              className="absolute inset-0 pointer-events-none spline-scene" 
+              style={{ 
+                transformOrigin: '75% 40%',
+                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                willChange: 'transform',
+                animation: 'fadeIn 0.5s ease-out'
+              }}
+            >
+              <SplineSceneBasic />
+            </div>
+          </div>
+        </ContainerScroll>
       </div>
       <Work />
       <About />

@@ -34,83 +34,88 @@ const Index = () => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        
-        if (scrollProgress > 0 && scrollProgress < 1) {
-          // Enhanced rolling effect with curved motion
-          const translateY = Math.max(0, Math.min(30, 30 * Math.sin(Math.PI * (1 - scrollProgress))));
-          const rotateX = Math.max(0, Math.min(5, 5 * Math.sin(Math.PI * (1 - scrollProgress))));
-          const scale = 0.97 + (0.03 * Math.sin(Math.PI * scrollProgress));
-          const opacity = 0.3 + (0.7 * Math.sin(Math.PI * scrollProgress));
-          
-          section.style.transform = `translateY(${translateY}px) rotateX(${rotateX}deg) scale(${scale})`;
-          section.style.opacity = opacity.toString();
-          section.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
-          section.style.transformOrigin = 'center top';
-          section.style.perspective = '1000px';
-          section.style.backfaceVisibility = 'hidden';
-        }
-      });
-    };
-
-    // Initialize smooth scroll behavior with enhanced easing
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Apply perspective to the container
-    document.body.style.perspective = '1000px';
-    document.body.style.transformStyle = 'preserve-3d';
-
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('scroll', handleScroll);
     
-    // Trigger initial scroll event
-    handleScroll();
-
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
-      <div className="relative">
-        <ContainerScroll
-          titleComponent={
-            <h1 className="text-4xl font-semibold text-white">
-              Welcome to my <br />
-              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
-                Portfolio
-              </span>
-            </h1>
-          }
-        >
-          <div className="relative w-full h-full">
-            <Hero />
-            <div 
-              ref={sceneRef}
-              className="absolute inset-0 pointer-events-none spline-scene" 
-              style={{ 
-                transformOrigin: '75% 40%',
-                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                willChange: 'transform',
-                animation: 'fadeIn 0.5s ease-out'
-              }}
-            >
-              <SplineSceneBasic />
-            </div>
+      
+      {/* Hero Section */}
+      <ContainerScroll
+        titleComponent={
+          <h1 className="text-4xl font-semibold text-white">
+            Welcome to my <br />
+            <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+              Portfolio
+            </span>
+          </h1>
+        }
+      >
+        <div className="relative w-full h-full">
+          <Hero />
+          <div 
+            ref={sceneRef}
+            className="absolute inset-0 pointer-events-none spline-scene" 
+            style={{ 
+              transformOrigin: '75% 40%',
+              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'transform',
+              animation: 'fadeIn 0.5s ease-out'
+            }}
+          >
+            <SplineSceneBasic />
           </div>
-        </ContainerScroll>
-      </div>
-      <Work />
-      <About />
-      <Skills />
-      <Contact />
+        </div>
+      </ContainerScroll>
+
+      {/* Work Section */}
+      <ContainerScroll
+        titleComponent={
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent">
+            Projects
+          </h2>
+        }
+      >
+        <Work />
+      </ContainerScroll>
+
+      {/* About Section */}
+      <ContainerScroll
+        titleComponent={
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+            About Me
+          </h2>
+        }
+      >
+        <About />
+      </ContainerScroll>
+
+      {/* Skills Section */}
+      <ContainerScroll
+        titleComponent={
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
+            Skills & Expertise
+          </h2>
+        }
+      >
+        <Skills />
+      </ContainerScroll>
+
+      {/* Contact Section */}
+      <ContainerScroll
+        titleComponent={
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+            Get in Touch
+          </h2>
+        }
+      >
+        <Contact />
+      </ContainerScroll>
       
       <div 
         className="cursor-agent"

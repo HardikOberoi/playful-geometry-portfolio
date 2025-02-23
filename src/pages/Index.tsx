@@ -43,79 +43,80 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <Navbar />
-      
-      {/* Hero Section */}
-      <ContainerScroll
-        titleComponent={
-          <h1 className="text-4xl font-semibold text-white">
-            Welcome to my <br />
-            <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
-              Portfolio
-            </span>
-          </h1>
-        }
+      <div 
+        ref={sceneRef}
+        className="fixed inset-0 pointer-events-none spline-scene" 
+        style={{ 
+          transform: 'scale(1.5)',
+          transformOrigin: 'center center',
+          opacity: 0.3,
+          zIndex: 0
+        }}
       >
-        <div className="relative w-full h-full">
+        <SplineSceneBasic />
+      </div>
+
+      <div className="relative z-10">
+        <Navbar />
+        
+        {/* Hero Section */}
+        <ContainerScroll
+          titleComponent={
+            <h1 className="text-4xl font-semibold text-white">
+              Welcome to my <br />
+              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+                Portfolio
+              </span>
+            </h1>
+          }
+        >
           <Hero />
-          <div 
-            ref={sceneRef}
-            className="absolute inset-0 pointer-events-none spline-scene" 
-            style={{ 
-              transformOrigin: '75% 40%',
-              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              willChange: 'transform',
-              animation: 'fadeIn 0.5s ease-out'
-            }}
-          >
-            <SplineSceneBasic />
-          </div>
-        </div>
-      </ContainerScroll>
+        </ContainerScroll>
 
-      {/* Work Section */}
-      <ContainerScroll
-        titleComponent={
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent">
-            Projects
-          </h2>
-        }
-      >
-        <Work />
-      </ContainerScroll>
+        {/* Work Section */}
+        <ContainerScroll
+          titleComponent={
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent">
+              Projects
+            </h2>
+          }
+        >
+          <Work />
+        </ContainerScroll>
 
-      {/* About Section */}
-      <ContainerScroll
-        titleComponent={
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
-            About Me
-          </h2>
-        }
-      >
-        <About />
-      </ContainerScroll>
+        {/* About Section */}
+        <ContainerScroll
+          titleComponent={
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+              About Me
+            </h2>
+          }
+        >
+          <About />
+        </ContainerScroll>
 
-      {/* Skills Section */}
-      <ContainerScroll
-        titleComponent={
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
-            Skills & Expertise
-          </h2>
-        }
-      >
-        <Skills />
-      </ContainerScroll>
+        {/* Skills Section */}
+        <ContainerScroll
+          titleComponent={
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
+              Skills & Expertise
+            </h2>
+          }
+        >
+          <Skills />
+        </ContainerScroll>
 
-      {/* Contact Section */}
-      <ContainerScroll
-        titleComponent={
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
-            Get in Touch
-          </h2>
-        }
-      >
-        <Contact />
-      </ContainerScroll>
+        {/* Contact Section */}
+        <ContainerScroll
+          titleComponent={
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+              Get in Touch
+            </h2>
+          }
+        >
+          <Contact />
+        </ContainerScroll>
+      </div>
       
       <div 
         className="cursor-agent"

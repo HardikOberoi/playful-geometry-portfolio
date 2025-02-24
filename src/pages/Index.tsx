@@ -37,7 +37,7 @@ const Index = () => {
         <div className="relative z-10">
           <Navbar />
           
-          {/* Hero Section with Robot */}
+          {/* Hero Section */}
           <ContainerScroll
             titleComponent={
               <h1 className="text-4xl font-semibold text-white">
@@ -48,12 +48,7 @@ const Index = () => {
               </h1>
             }
           >
-            <div className="relative w-full h-full">
-              <Hero />
-              <div className="absolute inset-0 z-0 opacity-30">
-                <SplineSceneBasic />
-              </div>
-            </div>
+            <Hero />
           </ContainerScroll>
 
           {/* Work Section */}
@@ -100,6 +95,10 @@ const Index = () => {
             <Contact />
           </ContainerScroll>
         </div>
+      </div>
+      
+      <div className="fixed inset-0 pointer-events-none">
+        <SplineSceneBasic />
       </div>
       
       <div 

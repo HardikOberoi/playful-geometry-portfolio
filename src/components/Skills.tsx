@@ -74,14 +74,14 @@ export const Skills = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8" // Increased gap and added top margin
           >
             {skills.map((skillGroup, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 hover:border-white/20 transition-all duration-500"
+                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 hover:border-white/20 transition-all duration-500 mb-8" // Added bottom margin
               >
                 <div className="absolute inset-0 z-0">
                   <img
@@ -108,14 +108,14 @@ export const Skills = () => {
                   </motion.div>
 
                   <motion.div 
-                    className="flex flex-wrap gap-2"
+                    className="flex flex-wrap gap-3" // Increased gap between skill tags
                     variants={containerVariants}
                   >
                     {skillGroup.items.map((skill, skillIndex) => (
                       <motion.span
                         key={skillIndex}
                         variants={itemVariants}
-                        className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 hover:bg-white/20 transition-colors duration-300 border border-white/5 hover:border-white/20"
+                        className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 hover:bg-white/20 transition-colors duration-300 border border-white/5 hover:border-white/20"
                         whileHover={{ scale: 1.05 }}
                       >
                         {skill}
@@ -124,7 +124,6 @@ export const Skills = () => {
                   </motion.div>
                 </div>
 
-                {/* Animated gradient border */}
                 <div className="absolute inset-0 border border-white/10 rounded-2xl animate-border-glow" />
               </motion.div>
             ))}

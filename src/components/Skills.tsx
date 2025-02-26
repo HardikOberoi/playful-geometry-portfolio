@@ -1,27 +1,7 @@
 
 import { motion } from "framer-motion";
-
-const skills = [
-  "React.js",
-  "Next.js",
-  "TypeScript",
-  "HTML5/CSS3",
-  "Tailwind CSS",
-  "Node.js",
-  "Java",
-  "MongoDB",
-  "RESTful APIs",
-  "Database Design",
-  "Responsive Design",
-  "User Interface Design",
-  "Wireframing",
-  "Prototyping",
-  "Git",
-  "VS Code",
-  "Agile/Scrum",
-  "CI/CD",
-  "Testing"
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,6 +26,19 @@ const itemVariants = {
 };
 
 export const Skills = () => {
+  const { data: skills, isLoading } = useQuery({
+    queryKey: ['skills'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('skills')
+        .select('*')
+        .order('name');
+      
+      if (error) throw error;
+      return data;
+    }
+  });
+
   return (
     <section id="skills" className="py-20 section-highlight overflow-hidden">
       <div className="container mx-auto px-6">
@@ -64,23 +57,27 @@ export const Skills = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto"
-          >
-            {skills.map((skill, index) => (
-              <motion.span
-                key={index}
-                variants={itemVariants}
-                className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 hover:bg-white/20 transition-colors duration-300 border border-white/5 hover:border-white/20"
-                whileHover={{ scale: 1.05 }}
-              >
-                {skill}
-              </motion.span>
-            ))}
-          </motion.div>
+          {isLoading ? (
+            <div className="text-center text-white/70">Loading skills...</div>
+          ) : (
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto"
+            >
+              {skills?.map((skill) => (
+                <motion.span
+                  key={skill.id}
+                  variants={itemVariants}
+                  className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 hover:bg-white/20 transition-colors duration-300 border border-white/5 hover:border-white/20"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  {skill.name}
+                </motion.span>
+              ))}
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

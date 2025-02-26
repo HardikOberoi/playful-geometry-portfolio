@@ -74,17 +74,15 @@ const Index = () => {
           </ContainerScroll>
 
           {/* Skills Section */}
-          <div className="h-[95rem] md:h-[105rem]"> {/* Significantly increased container height for Skills section */}
-            <ContainerScroll
-              titleComponent={
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
-                  Skills & Expertise
-                </h2>
-              }
-            >
-              <Skills />
-            </ContainerScroll>
-          </div>
+          <ContainerScroll
+            titleComponent={
+              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
+                Skills & Expertise
+              </h2>
+            }
+          >
+            <Skills />
+          </ContainerScroll>
 
           {/* Contact Section */}
           <ContainerScroll

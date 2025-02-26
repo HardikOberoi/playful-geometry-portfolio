@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Feedback from "./pages/Feedback";
+import Messages from "./pages/Messages";
 import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/messages" element={<Messages />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />

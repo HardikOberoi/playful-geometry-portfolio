@@ -59,7 +59,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
             <a
-              href="#"
+              href="/"
               className="text-xl font-display font-bold bg-gradient-to-r from-[#9b87f5] via-[#b19dff] to-[#ffffff] bg-clip-text text-transparent hover-white-glow"
             >
               Portfolio
@@ -89,6 +89,7 @@ export const Navbar = () => {
             <NavLink href="#about" color="from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84]">About</NavLink>
             <NavLink href="#contact" color="from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED]">Contact</NavLink>
             <NavLink href="/feedback" color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">Feedback</NavLink>
+            <NavLink href="/messages" color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">Messages</NavLink>
           </div>
 
           <button
@@ -133,6 +134,9 @@ export const Navbar = () => {
             </MobileNavLink>
             <MobileNavLink href="/feedback" onClick={() => setIsMenuOpen(false)} color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">
               Feedback
+            </MobileNavLink>
+            <MobileNavLink href="/messages" onClick={() => setIsMenuOpen(false)} color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">
+              Messages
             </MobileNavLink>
           </div>
         </div>

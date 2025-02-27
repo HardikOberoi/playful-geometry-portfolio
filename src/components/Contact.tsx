@@ -60,11 +60,11 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 section-contact section-highlight">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-16 section-contact section-highlight">
+      <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent hover-white-glow">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-2 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent hover-white-glow">
               Get in Touch
             </h2>
             <p className="text-white/70 hover-white-glow">
@@ -72,11 +72,11 @@ export const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-16">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white/5 rounded-2xl p-4 md:p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-10">
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <div className="grid md:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-1">
                     Name
                   </label>
                   <input
@@ -85,12 +85,12 @@ export const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
+                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/70 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white/70 mb-1">
                     Email
                   </label>
                   <input
@@ -99,32 +99,32 @@ export const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
+                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
                     placeholder="Your email"
                   />
                 </div>
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-1">
                   Message
                 </label>
                 <textarea
                   id="message"
-                  rows={4}
+                  rows={3}
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
+                  className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-[#9b87f5]/20 focus:border-[#9b87f5] transition-all duration-300 text-white hover-white-glow animated-border"
                   placeholder="Your message"
                 />
               </div>
 
-              <div className="text-center mt-6">
+              <div className="text-center mt-3">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full md:w-auto inline-block bg-gradient-to-r from-primary to-purple-600 text-white px-10 py-3 rounded-full font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                  className="w-full bg-gradient-to-r from-primary to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed text-lg"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>

@@ -3,8 +3,55 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { Navbar } from "@/components/Navbar";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
+
+// Admin email constant - only this email will have access
+const ADMIN_EMAIL = "admin@example.com"; // Replace with your actual email
 
 export default function Messages() {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Check if current user is admin
+  useEffect(() => {
+    const checkAdmin = async () => {
+      const { data } = await supabase.auth.getSession();
+      
+      if (!data.session) {
+        toast({
+          title: "Access Denied",
+          description: "You must be logged in to view this page.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      // Get user email
+      const userEmail = data.session.user.email;
+      
+      // Check if user is admin
+      if (userEmail !== ADMIN_EMAIL) {
+        toast({
+          title: "Access Denied",
+          description: "You don't have permission to view this page.",
+          variant: "destructive",
+        });
+        navigate("/");
+        return;
+      }
+
+      setIsAdmin(true);
+      setIsCheckingAuth(false);
+    };
+
+    checkAdmin();
+  }, [navigate, toast]);
+
   const { data: messages, isLoading } = useQuery({
     queryKey: ['contact-messages'],
     queryFn: async () => {
@@ -15,8 +62,28 @@ export default function Messages() {
       
       if (error) throw error;
       return data;
-    }
+    },
+    enabled: isAdmin, // Only run query if user is admin
   });
+
+  // Show loading while checking auth or if not admin
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <Navbar />
+        <div className="container mx-auto px-6 pt-32 pb-20">
+          <h1 className="text-3xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+            Checking access...
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
+  // If not admin, this should never show due to the redirect, but add as safeguard
+  if (!isAdmin) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">

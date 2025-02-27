@@ -63,7 +63,7 @@ export const Contact = () => {
     <section id="contact" className="py-20 section-contact section-highlight">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent hover-white-glow">
               Get in Touch
             </h2>
@@ -72,9 +72,9 @@ export const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-white/5 rounded-2xl p-8 md:p-10 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-16">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-16">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-2">
                     Name
@@ -111,7 +111,7 @@ export const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -120,11 +120,11 @@ export const Contact = () => {
                 />
               </div>
 
-              <div className="text-center pt-4">
+              <div className="text-center mt-6">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-block bg-gradient-to-r from-primary to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full md:w-auto inline-block bg-gradient-to-r from-primary to-purple-600 text-white px-10 py-3 rounded-full font-medium hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 
 // Admin email constant - only this email will have access
-const ADMIN_EMAIL = "admin@example.com"; // Replace with your actual email
+const ADMIN_EMAIL = "haardikoberoi04@gmail.com"; // Admin email address
 
 export default function Messages() {
   const { toast } = useToast();

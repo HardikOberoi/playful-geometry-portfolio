@@ -72,7 +72,7 @@ export const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-white/5 rounded-2xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border">
+          <div className="bg-white/5 rounded-2xl p-8 md:p-10 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-16">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -111,7 +111,7 @@ export const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  rows={6}
+                  rows={5}
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -120,7 +120,7 @@ export const Contact = () => {
                 />
               </div>
 
-              <div className="text-center">
+              <div className="text-center pt-4">
                 <button
                   type="submit"
                   disabled={isSubmitting}

@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Feedback from "./pages/Feedback";
 import Messages from "./pages/Messages";
+import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/messages" element={<Messages />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />

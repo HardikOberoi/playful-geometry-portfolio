@@ -71,8 +71,8 @@ export default function Messages() {
     return (
       <div className="min-h-screen bg-black text-white">
         <Navbar />
-        <div className="container mx-auto px-6 pt-32 pb-20">
-          <h1 className="text-3xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+        <div className="container mx-auto px-4 pt-24 pb-16">
+          <h1 className="text-2xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
             Checking access...
           </h1>
         </div>
@@ -88,37 +88,43 @@ export default function Messages() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
-      <div className="container mx-auto px-6 pt-32 pb-20">
-        <h1 className="text-3xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+      <div className="container mx-auto px-4 pt-24 pb-16">
+        <h1 className="text-2xl md:text-4xl font-display font-bold mb-8 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
           Contact Messages
         </h1>
 
         {isLoading ? (
           <div className="text-white/70">Loading messages...</div>
         ) : (
-          <div className="grid gap-6">
-            {messages?.map((message) => (
-              <div 
-                key={message.id}
-                className="bg-white/5 rounded-lg p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="flex flex-wrap gap-4 justify-between items-start mb-4">
-                  <div>
-                    <h3 className="font-medium text-lg text-white/90">{message.name}</h3>
-                    <a 
-                      href={`mailto:${message.email}`}
-                      className="text-purple-400 hover:text-purple-300 transition-colors"
-                    >
-                      {message.email}
-                    </a>
-                  </div>
-                  <span className="text-sm text-white/50">
-                    {format(new Date(message.created_at), 'PPpp')}
-                  </span>
-                </div>
-                <p className="text-white/70 whitespace-pre-wrap">{message.message}</p>
+          <div className="grid gap-4 md:gap-6">
+            {messages?.length === 0 ? (
+              <div className="bg-white/5 rounded-lg p-4 md:p-6 border border-white/10">
+                <p className="text-white/70">No messages yet.</p>
               </div>
-            ))}
+            ) : (
+              messages?.map((message) => (
+                <div 
+                  key={message.id}
+                  className="bg-white/5 rounded-lg p-4 md:p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
+                >
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 mb-3">
+                    <div>
+                      <h3 className="font-medium text-lg text-white/90">{message.name}</h3>
+                      <a 
+                        href={`mailto:${message.email}`}
+                        className="text-purple-400 hover:text-purple-300 transition-colors text-sm md:text-base"
+                      >
+                        {message.email}
+                      </a>
+                    </div>
+                    <span className="text-sm text-white/50">
+                      {format(new Date(message.created_at), 'PPpp')}
+                    </span>
+                  </div>
+                  <p className="text-white/70 whitespace-pre-wrap text-sm md:text-base">{message.message}</p>
+                </div>
+              ))
+            )}
           </div>
         )}
       </div>

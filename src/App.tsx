@@ -39,21 +39,23 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <TooltipProvider>
-          <div 
-            className="cursor-highlight"
-            style={{
-              left: `${cursorPosition.x}px`,
-              top: `${cursorPosition.y}px`,
-            }}
-          />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Toaster />
-          <Sonner />
+          <div className="w-full overflow-x-hidden">
+            <div 
+              className="cursor-highlight"
+              style={{
+                left: `${cursorPosition.x}px`,
+                top: `${cursorPosition.y}px`,
+              }}
+            />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/feedback" element={<Feedback />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Toaster />
+            <Sonner />
+          </div>
         </TooltipProvider>
       </BrowserRouter>
     </QueryClientProvider>

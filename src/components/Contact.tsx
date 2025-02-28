@@ -60,19 +60,19 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 section-contact section-highlight">
+    <section id="contact" className="py-8 md:py-12 section-contact section-highlight">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-2 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent hover-white-glow">
+          <div className="text-center mb-4 md:mb-6">
+            <h2 className="text-2xl md:text-3xl font-display font-bold mb-2 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent hover-white-glow">
               Get in Touch
             </h2>
-            <p className="text-white/70 hover-white-glow">
+            <p className="text-white/70 hover-white-glow text-sm md:text-base">
               Interested in working together? Let's discuss your project
             </p>
           </div>
 
-          <div className="bg-white/5 rounded-2xl p-4 md:p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-10">
+          <div className="bg-white/5 rounded-xl md:rounded-2xl p-3 md:p-5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover-white-glow animated-border mb-5 md:mb-10">
             <form onSubmit={handleSubmit} className="space-y-3">
               <div className="grid md:grid-cols-2 gap-3">
                 <div>
@@ -111,7 +111,7 @@ export const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  rows={3}
+                  rows={2}
                   value={formData.message}
                   onChange={handleChange}
                   required

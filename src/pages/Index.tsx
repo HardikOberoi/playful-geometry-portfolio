@@ -24,7 +24,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black" ref={containerRef}>
+    <div className="min-h-screen w-full bg-black" ref={containerRef}>
       <div className="relative">
         <GlowEffect
           colors={['#4ECDC4', '#45B7AF', '#2E8B84', '#FF6B6B']}
@@ -34,15 +34,15 @@ const Index = () => {
           duration={8}
         />
         
-        <div className="relative z-10">
+        <div className="relative z-10 w-full">
           <Navbar />
           
           {/* Hero Section */}
           <ContainerScroll
             titleComponent={
-              <h1 className="text-4xl font-semibold text-white">
+              <h1 className="text-2xl md:text-4xl font-semibold text-white">
                 Welcome to my <br />
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+                <span className="text-3xl md:text-[5rem] lg:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
                   Portfolio
                 </span>
               </h1>
@@ -54,7 +54,7 @@ const Index = () => {
           {/* Work Section */}
           <ContainerScroll
             titleComponent={
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent">
                 Projects
               </h2>
             }
@@ -65,7 +65,7 @@ const Index = () => {
           {/* About Section */}
           <ContainerScroll
             titleComponent={
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent">
                 About Me
               </h2>
             }
@@ -76,7 +76,7 @@ const Index = () => {
           {/* Skills Section */}
           <ContainerScroll
             titleComponent={
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent">
                 Skills & Expertise
               </h2>
             }
@@ -87,7 +87,7 @@ const Index = () => {
           {/* Contact Section */}
           <ContainerScroll
             titleComponent={
-              <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
+              <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent">
                 Get in Touch
               </h2>
             }
@@ -97,7 +97,7 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none z-0">
         <SplineSceneBasic />
       </div>
       

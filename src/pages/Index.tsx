@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Work } from "@/components/Work";
@@ -17,7 +16,6 @@ const Index = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const { scrollYProgress } = useScroll();
   
-  // Create animations based on scroll position
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.2]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
   
@@ -58,7 +56,6 @@ const Index = () => {
         <div className="relative z-10 w-full">
           <Navbar />
           
-          {/* Hero Section */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -89,7 +86,6 @@ const Index = () => {
             </ContainerScroll>
           </motion.div>
 
-          {/* Work Section */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -113,7 +109,6 @@ const Index = () => {
             </ContainerScroll>
           </motion.div>
 
-          {/* About Section */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -137,7 +132,6 @@ const Index = () => {
             </ContainerScroll>
           </motion.div>
 
-          {/* Skills Section */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -161,7 +155,6 @@ const Index = () => {
             </ContainerScroll>
           </motion.div>
 
-          {/* Contact Section */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -185,7 +178,6 @@ const Index = () => {
             </ContainerScroll>
           </motion.div>
           
-          {/* Special Feature Callout */}
           <div className="container mx-auto py-16 px-4">
             <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 hover-white-glow">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -233,7 +225,7 @@ const Index = () => {
         transition={{ duration: 0.5 }}
       />
       
-      <style jsx>{`
+      <style>{`
         .stars {
           background-image: 
             radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),

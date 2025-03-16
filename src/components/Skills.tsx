@@ -51,7 +51,8 @@ export const Skills = () => {
     { id: "7", name: "JavaScript", category: "Language" },
     { id: "8", name: "Framer Motion", category: "Animation" },
     { id: "9", name: "Git", category: "Tool" },
-    { id: "10", name: "Responsive Design", category: "Design" }
+    { id: "10", name: "Responsive Design", category: "Design" },
+    { id: "11", name: "Python", category: "Language" }
   ];
 
   // Use fallback skills if no data is loaded from Supabase

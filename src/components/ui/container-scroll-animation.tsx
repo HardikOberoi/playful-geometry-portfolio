@@ -91,22 +91,6 @@ export const Card = ({
     >
       <div className="h-full w-full overflow-auto rounded-xl md:rounded-2xl">
         {children}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-5 h-8 border-2 border-white/20 rounded-full flex justify-center items-start p-1"
-            >
-              <motion.div
-                animate={{ height: ["0%", "40%"] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1 bg-white/50 rounded-full"
-              />
-            </motion.div>
-            <span className="text-sm text-white/50">Scroll down</span>
-          </div>
-        </div>
       </div>
     </motion.div>
   );

@@ -44,11 +44,6 @@ export const Navbar = () => {
             </HoverCardContent>
           </HoverCard>
           <Link to="/messages" className="text-white/70 hover:text-white transition-colors">Messages</Link>
-          <Link to="/shooting-stars" className="text-white/70 hover:text-white transition-colors">
-            <span className="bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] bg-clip-text text-transparent font-medium">
-              Shooting Stars
-            </span>
-          </Link>
           <Link to="/login">
             <Button variant="outline" className="border-white/20 hover:border-white hover:bg-white/10">
               Login
@@ -83,11 +78,6 @@ export const Navbar = () => {
             <Link to="/" className="text-white/70 hover:text-white transition-colors py-2">Home</Link>
             <Link to="/feedback" className="text-white/70 hover:text-white transition-colors py-2">Feedback</Link>
             <Link to="/messages" className="text-white/70 hover:text-white transition-colors py-2">Messages</Link>
-            <Link to="/shooting-stars" className="text-white/70 hover:text-white transition-colors py-2">
-              <span className="bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] bg-clip-text text-transparent font-medium">
-                Shooting Stars
-              </span>
-            </Link>
             <Link to="/login" className="py-2">
               <Button variant="outline" className="w-full border-white/20 hover:border-white hover:bg-white/10">
                 Login

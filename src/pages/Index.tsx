@@ -1,3 +1,4 @@
+
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Work } from "@/components/Work";
@@ -9,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import { GlowEffect } from "@/components/ui/glow-effect";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -177,34 +177,6 @@ const Index = () => {
               <Contact />
             </ContainerScroll>
           </motion.div>
-          
-          <div className="container mx-auto py-16 px-4">
-            <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 hover-white-glow">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] bg-clip-text text-transparent mb-2">
-                    Check Out Shooting Stars Effect
-                  </h3>
-                  <p className="text-white/70 mb-4">
-                    A mesmerizing background effect with customizable shooting stars traversing across the screen.
-                  </p>
-                  <Link to="/shooting-stars">
-                    <button className="px-6 py-2 rounded-full bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] text-white font-medium hover:shadow-lg hover:shadow-[#9E00FF]/20 transition-all">
-                      View Demo
-                    </button>
-                  </Link>
-                </div>
-                <div className="w-full md:w-1/3 h-32 md:h-40 relative overflow-hidden rounded-lg">
-                  <div className="absolute inset-0 bg-black">
-                    <div className="stars absolute inset-0"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-1 bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] transform rotate-45 animate-pulse"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       

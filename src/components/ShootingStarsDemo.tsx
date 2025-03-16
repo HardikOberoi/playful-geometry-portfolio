@@ -20,26 +20,6 @@ export function ShootingStarsDemo() {
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto px-4">
           A mesmerizing background effect with customizable shooting stars traversing across the screen
         </p>
-        
-        <div className="mt-8 p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10 max-w-3xl w-full mx-4">
-          <h2 className="text-xl font-bold text-white mb-4">Integration Prompt</h2>
-          <div className="bg-gray-900 rounded-md p-4 text-left overflow-auto max-h-[15rem] text-sm">
-            <pre className="text-gray-300 whitespace-pre-wrap">
-              {`You are given a task to integrate an existing React component in the codebase
-
-The codebase should support:
-- shadcn project structure  
-- Tailwind CSS
-- Typescript
-
-If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
-
-Determine the default path for components and styles. 
-If default path for components is not /components/ui, provide instructions on why it's important to create this folder
-Copy-paste this component to /components/ui folder:`}
-            </pre>
-          </div>
-        </div>
       </div>
 
       {/* Multiple shooting star layers with different colors and speeds */}

@@ -29,8 +29,20 @@ const Index = () => {
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen w-full bg-black" ref={containerRef}>
+    <div className="min-h-screen w-full bg-black overflow-x-hidden" ref={containerRef}>
       <div className="relative">
         <motion.div style={{ opacity, scale }} className="fixed top-0 left-0 w-full h-full z-0">
           <GlowEffect
@@ -46,124 +58,131 @@ const Index = () => {
           <Navbar />
           
           {/* Hero Section */}
-          <ContainerScroll
-            titleComponent={
-              <motion.h1 
-                className="text-2xl md:text-4xl font-semibold text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Welcome to my <br />
-                <motion.span 
-                  className="text-3xl md:text-[5rem] lg:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-                >
-                  Portfolio
-                </motion.span>
-              </motion.h1>
-            }
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={sectionVariants}
           >
-            <Hero />
-          </ContainerScroll>
+            <ContainerScroll
+              titleComponent={
+                <motion.h1 
+                  className="text-2xl md:text-4xl font-semibold text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  Welcome to my <br />
+                  <motion.span 
+                    className="text-3xl md:text-[5rem] lg:text-[6rem] font-bold mt-1 leading-none bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+                  >
+                    Portfolio
+                  </motion.span>
+                </motion.h1>
+              }
+            >
+              <Hero />
+            </ContainerScroll>
+          </motion.div>
 
           {/* Work Section */}
-          <ContainerScroll
-            titleComponent={
-              <motion.h2 
-                className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                Projects
-              </motion.h2>
-            }
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8 }}
+            <ContainerScroll
+              titleComponent={
+                <motion.h2 
+                  className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  Projects
+                </motion.h2>
+              }
             >
               <Work />
-            </motion.div>
-          </ContainerScroll>
+            </ContainerScroll>
+          </motion.div>
 
           {/* About Section */}
-          <ContainerScroll
-            titleComponent={
-              <motion.h2 
-                className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                About Me
-              </motion.h2>
-            }
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8 }}
+            <ContainerScroll
+              titleComponent={
+                <motion.h2 
+                  className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  About Me
+                </motion.h2>
+              }
             >
               <About />
-            </motion.div>
-          </ContainerScroll>
+            </ContainerScroll>
+          </motion.div>
 
           {/* Skills Section */}
-          <ContainerScroll
-            titleComponent={
-              <motion.h2 
-                className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                Skills & Expertise
-              </motion.h2>
-            }
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8 }}
+            <ContainerScroll
+              titleComponent={
+                <motion.h2 
+                  className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  Skills & Expertise
+                </motion.h2>
+              }
             >
               <Skills />
-            </motion.div>
-          </ContainerScroll>
+            </ContainerScroll>
+          </motion.div>
 
           {/* Contact Section */}
-          <ContainerScroll
-            titleComponent={
-              <motion.h2 
-                className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
-              >
-                Get in Touch
-              </motion.h2>
-            }
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={sectionVariants}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8 }}
+            <ContainerScroll
+              titleComponent={
+                <motion.h2 
+                  className="text-2xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  Get in Touch
+                </motion.h2>
+              }
             >
               <Contact />
-            </motion.div>
-          </ContainerScroll>
+            </ContainerScroll>
+          </motion.div>
         </div>
       </div>
       

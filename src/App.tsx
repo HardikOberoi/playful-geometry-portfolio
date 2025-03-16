@@ -10,6 +10,7 @@ import Feedback from "./pages/Feedback";
 import Messages from "./pages/Messages";
 import Login from "./pages/Login";
 import { useEffect, useState } from "react";
+import { ShootingStarsDemo } from "./components/ShootingStarsDemo";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/messages" element={<Messages />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/shooting-stars" element={<ShootingStarsDemo />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />

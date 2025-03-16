@@ -1,217 +1,101 @@
 
-import { useState, useEffect } from "react";
-import { Menu, X, Github, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/components/ui/use-toast";
-
-const NavLink = ({ href, children, color, target, onClick }: { href: string; children: React.ReactNode; color: string; target?: string; onClick?: () => void }) => (
-  <motion.a
-    href={href}
-    target={target}
-    onClick={onClick}
-    className={`font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow flex items-center gap-2`}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    {children}
-  </motion.a>
-);
-
-const RouterLink = ({ to, children, color, onClick }: { to: string; children: React.ReactNode; color: string; onClick?: () => void }) => (
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Link
-      to={to}
-      onClick={onClick}
-      className={`font-medium bg-gradient-to-r ${color} bg-clip-text text-transparent hover-white-glow flex items-center gap-2`}
-    >
-      {children}
-    </Link>
-  </motion.div>
-);
+import { Button } from "@/components/ui/button";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
-  const { toast } = useToast();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
-    
-    // Check if user is logged in
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      setIsLoggedIn(!!data.session);
-    };
-    
-    checkSession();
-    
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsLoggedIn(!!session);
-    });
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      subscription.unsubscribe();
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenu = () => setIsMenuOpen(false);
-  
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast({
-      title: "Logged out",
-      description: "You have been logged out successfully."
-    });
-    closeMenu();
-  };
-
   return (
-    <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-black/80 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-    >
-      <div className="container mx-auto px-4 py-3 md:px-6 md:py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 md:gap-6">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/"
-                className="text-lg md:text-xl font-display font-bold bg-gradient-to-r from-[#9b87f5] via-[#b19dff] to-[#ffffff] bg-clip-text text-transparent hover-white-glow"
-              >
-                Portfolio
-              </Link>
-            </motion.div>
-            <div className="hidden md:flex items-center gap-4">
-              <NavLink 
-                href="https://github.com/" 
-                color="from-[#9b87f5] via-[#b19dff] to-[#ffffff]"
-                target="_blank"
-              >
-                <Github size={18} />
-                GitHub
-              </NavLink>
-              <NavLink 
-                href="https://www.linkedin.com/in/hardik-oberoi-84693a251/" 
-                color="from-[#9b87f5] via-[#b19dff] to-[#ffffff]"
-                target="_blank"
-              >
-                <Linkedin size={18} />
-                LinkedIn
-              </NavLink>
-            </div>
-          </div>
-          
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <NavLink href="#work" color="from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C]">Work</NavLink>
-            <NavLink href="#about" color="from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84]">About</NavLink>
-            <NavLink href="#contact" color="from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED]">Contact</NavLink>
-            <RouterLink to="/feedback" color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">Feedback</RouterLink>
-            {isLoggedIn ? (
-              <>
-                <RouterLink to="/messages" color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">Messages</RouterLink>
-                <motion.button
-                  onClick={handleLogout}
-                  className="font-medium bg-gradient-to-r from-[#EF4444] via-[#F87171] to-[#FCA5A5] bg-clip-text text-transparent hover-white-glow"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Logout
-                </motion.button>
-              </>
-            ) : (
-              <RouterLink to="/login" color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">Login</RouterLink>
-            )}
-          </div>
-
-          <motion.button
-            className="md:hidden text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+    <nav className={cn(
+      "fixed top-0 w-full z-50 transition-all duration-300 nav-blur backdrop-blur-md",
+      scrolled ? "py-2 bg-black/80" : "py-4 bg-transparent"
+    )}>
+      <div className="container flex justify-between items-center">
+        <Link to="/" className="font-bold text-xl text-white">Portfolio</Link>
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
+          <Link to="/" className="text-white/70 hover:text-white transition-colors">Home</Link>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Link to="/feedback" className="text-white/70 hover:text-white transition-colors">Feedback</Link>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80 backdrop-blur-md bg-black/70 border-white/10 text-white">
+              <div className="flex justify-between space-x-4">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">Share your thoughts</h4>
+                  <p className="text-sm">
+                    I'd love to hear your feedback on my portfolio.
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+          <Link to="/messages" className="text-white/70 hover:text-white transition-colors">Messages</Link>
+          <Link to="/shooting-stars" className="text-white/70 hover:text-white transition-colors">
+            <span className="bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] bg-clip-text text-transparent font-medium">
+              Shooting Stars
+            </span>
+          </Link>
+          <Link to="/login">
+            <Button variant="outline" className="border-white/20 hover:border-white hover:bg-white/10">
+              Login
+            </Button>
+          </Link>
         </div>
-      </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <motion.div 
-          className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md shadow-lg z-50"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
+        
+        {/* Mobile menu button */}
+        <button 
+          className="flex md:hidden text-white p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          <div className="container mx-auto px-4 py-4 space-y-3">
-            <NavLink 
-              href="https://github.com/" 
-              onClick={closeMenu} 
-              color="from-[#9b87f5] via-[#b19dff] to-[#ffffff]"
-              target="_blank"
-            >
-              <Github size={18} />
-              GitHub
-            </NavLink>
-            <NavLink 
-              href="https://www.linkedin.com/in/hardik-oberoi-84693a251/" 
-              onClick={closeMenu} 
-              color="from-[#9b87f5] via-[#b19dff] to-[#ffffff]"
-              target="_blank"
-            >
-              <Linkedin size={18} />
-              LinkedIn
-            </NavLink>
-            <NavLink href="#work" onClick={closeMenu} color="from-[#FF6B6B] via-[#FFD93D] to-[#FF8E3C]">
-              Work
-            </NavLink>
-            <NavLink href="#about" onClick={closeMenu} color="from-[#4ECDC4] via-[#45B7AF] to-[#2E8B84]">
-              About
-            </NavLink>
-            <NavLink href="#contact" onClick={closeMenu} color="from-[#A78BFA] via-[#8B5CF6] to-[#7C3AED]">
-              Contact
-            </NavLink>
-            <RouterLink to="/feedback" onClick={closeMenu} color="from-[#F472B6] via-[#EC4899] to-[#DB2777]">
-              Feedback
-            </RouterLink>
-            {isLoggedIn ? (
-              <>
-                <RouterLink to="/messages" onClick={closeMenu} color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">
-                  Messages
-                </RouterLink>
-                <motion.button
-                  onClick={handleLogout}
-                  className="font-medium bg-gradient-to-r from-[#EF4444] via-[#F87171] to-[#FCA5A5] bg-clip-text text-transparent hover-white-glow w-full text-left"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Logout
-                </motion.button>
-              </>
-            ) : (
-              <RouterLink to="/login" onClick={closeMenu} color="from-[#4F46E5] via-[#7C3AED] to-[#9333EA]">
+          {mobileMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
+        </button>
+      </div>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-black/90 backdrop-blur-md border-t border-white/10">
+          <div className="container py-4 flex flex-col space-y-4">
+            <Link to="/" className="text-white/70 hover:text-white transition-colors py-2">Home</Link>
+            <Link to="/feedback" className="text-white/70 hover:text-white transition-colors py-2">Feedback</Link>
+            <Link to="/messages" className="text-white/70 hover:text-white transition-colors py-2">Messages</Link>
+            <Link to="/shooting-stars" className="text-white/70 hover:text-white transition-colors py-2">
+              <span className="bg-gradient-to-r from-[#9E00FF] to-[#00B8FF] bg-clip-text text-transparent font-medium">
+                Shooting Stars
+              </span>
+            </Link>
+            <Link to="/login" className="py-2">
+              <Button variant="outline" className="w-full border-white/20 hover:border-white hover:bg-white/10">
                 Login
-              </RouterLink>
-            )}
+              </Button>
+            </Link>
           </div>
-        </motion.div>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 };
